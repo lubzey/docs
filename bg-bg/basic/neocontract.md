@@ -2,7 +2,7 @@
 
 ## Предговор
 
-Смарт контрактите се отнасят до всякаква компютърна програма, която може автоматично да изпълни условията на своя предварително програмиран контракт. Идеята за смарт контракт е била предложена за пръв път от криптографа Ник Сабо (Nick Szabo) през 1994, което я прави стара колкото и самият интернет. Поради липсата на надеждна среда за изпълнение, смарт контрактите не са били широко използвани.
+Смарт контрактите се отнасят до всякаква компютърна програма, която може автоматично да изпълни условията на своя предварително програмиран контракт. Идеята за смарт контракт е била предложена за пръв път от криптографа Ник Забо (Nick Szabo) през 1994, което я прави стара колкото и самият интернет. Поради липсата на надеждна среда за изпълнение, смарт контрактите не са били широко използвани.
 
 През 2008, човек на име Сатоши Накамото пусна Bitcoin и очерта основните концепции на блокчейна. В блокчейна на Bitcoin Накамото използва набор от скриптови езици, за да помогне на потребителите да придобият повече гъвкавост при контрола на личните си акаунти и процеса на трансфер, което в крайна сметка стана ембрионна форма на верижно-базирана смарт контракт система.
 
@@ -18,37 +18,36 @@ NEO блокчейн е платформа за дигитални активи 
 
 Ако дадена програма се изпълнява на различни компютри или по различно време на същия компютър, поведението на програмата е детерминистичен, и ако тя гарантира че с едни и същи входни данни гарантира ще произведе същите изходни данни, както и обратното.
 
-Блокчейн е едновременно метод за многоточково съхранение и изчислителен метод, при който данните в рамките на тази разпределена система са резултат от надеждни изчисления, които не могат да бъдат манипулирани. Смарт контрактите действат в рамките на много-ноудовата, разпределена блокчейн мрежа. Ако смарт контрактът не е детерминистичен, резултатите от различните ноудове може да са несъвместими. В резултат на това не може да се постигне консенсус между ноудовете, което блокира мрежата. Следователно, при проектирането на смарт контракт система е необходимо да се изключат всички фактори, които могат да доведат до не-детерминистично поведение.
+Блокчейн е едновременно метод за многоточково съхранение и изчислителен метод, при който данните в рамките на тази разпределена система са резултат от надеждни изчисления, които не могат да бъдат манипулирани. Смарт контрактите действат в рамките на много-ноудовата, разпределена блокчейн мрежа. Ако смарт контрактът не е детерминистичен, резултатите от различните ноудове може да са несъвместими. В резултат на това не може да се постигне консенсус между ноудовете, което блокира мрежата. Следователно, при проектирането на смарт контракт система е необходимо да се изключат всички фактори, които могат да доведат до недетерминистично поведение.
 
 #### Време
 
-Obtaining system-time is a very common system function, that may be heavily applied in certain time-sensitive contract procedures. However, obtaining system-time is a non-deterministic system function, and it is difficult to obtain a unified, precise time in a distributed system, as the results of different nodes will be inconsistent. NeoContract provides a block-based system-call that treats the entire blockchain, as a timestamp server, and obtains the timestamp whenever a new block is generated. On average, NEO network generates a new block every 15 seconds, so the contract runs at approximately the same time as the latest block-time, plus-minus 15 seconds. 
+Получаването на системно време е много често срещана системна функция, която може да има голямо приложение в определени процедури, свързани с времето. Обаче получаването на системно време е недетерминистичена системна функция и е трудно да се получи унифицирано точно време в дистрибутирана система, тъй като резултатите от различните ноудове ще бъдат несъвместими. NeoContract предоставя системно повикване базирано на блокове, което третира целия блокчейн като сървър за времеви отпечатък и го получава, когато се генерира нов блок. Мрежата на NEO генерира нов блок на всеки 15 секунди, така че контрактът работи приблизително по същото време като последния блок-време, плюс-минус 15 секунди.
 
-#### Randomness
+#### Случайност
 
-Many smart contract programs, such as gambling contracts and small games, use random number functions. However, random number functions are a typical non-deterministic function, and each system-call will obtain different results. In a distributed system, there are many ways to solve this problem: Firstly, the same random seed can be used for all nodes, so that the return sequence of the entire random function is deterministic, but this method exposes the entire random result in advance, greatly reducing the practical value of the random number. Another possible solution, is to let all nodes communicate in a collaborative way to generate random numbers. This can be achieved by using cryptographic techniques to produce a fair random number, but the disadvantage lies in the very poor performance, and need for additional communication overhead. A centralized random number provider can be used to generate random numbers which guarantees consistency and performance, but the drawback of this approach is obvious; Users will have to unconditionally trust the centralized number provider.
+Много смарт контракт програми, като например контракти за хазарт и малки игри, използват функции с произволни числа. Функциите с случайни числа обаче са типична недетерминистична функция и всяко повикване на системата ще получи различни резултати. В дистрибутирана система има много начини за решаване на този проблем: Първо, същите произволни семена могат да бъдат използвани за всички възли, така че последователността на връщане на цялата произволна функция е детерминирана, но този метод излага предварително целия случайен резултат предварително, като значително намалява практическата стойност на случайното число. Друго възможно решение е всички ноудове да комуникират съвместно, за да генерират произволни номера. Това може да бъде постигнато чрез използване на криптографски техники за получаване на справедливо случайно число, но недостатъкът е в много ниската производителност и необходимостта от допълнителна комуникация. Централизираният доставчик на случаен номер може да се използва за генериране на произволни номера, които гарантират последователност и производителност, но недостатъкът на този подход е очевиден: потребителите ще трябва безусловно да се доверят на централизиран доставчика на номера.
 
-There are two ways to generate a random number in NEO:
+Има два начина за генериране на случаен номер в NEO:
 
-1. When each block is generated, the consensus node will reach a consensus on a random number, and fill it into the Nonce field of the new block. The contract program can easily obtain the random number of any block, by referencing the Nonce field
+1. Когато се генерира всеки блок, консенсусният ноуд ще постигне консенсус на случайно число и ще го запълни в полето Nonce на новия блок. Програмата за контракта може лесно да получи произволния номер на всеки блок, като посочи полето Nonce.
 
-2. The contract program can use the hash value of the block as a random number generator, because the block hash value has certain inherent randomness. This method can be used to obtain a weak random number
+2. Програмата на контракта може да използва хеширата стойност на блок като генератор за случаен номер, защото хешираната стойност има определена наследена случайност. Този метод може да се използва за придобиване на слаб случаен номер.
 
-#### Data Source
+#### Източник на информация
 
-If a program obtains data at run-time, it might become a non-deterministic program if the data source provides non-deterministic data. For example, using different search engines to obtain the top 10 search results for a particular keyword, may yield different results, in various sort orders, if different IP addresses are used.
+Ако дадена програма получи данни по време на изпълнение, тя може да стане недетерминистична програма, ако източникът на данни предоставя недетерминистични данни. Например, използването на различни търсачки за получаване на първите 10 резултата от търсене за дадена ключова дума може да доведе до различни резултати в различни поръчки за сортиране, ако се използват различни IP адреси.
 
-For smart contracts, NEO provides two types of deterministic data sources:
+NEO предоставя два вида детерминистични източници на данни за смарт контракти:
 
-- **Blockchain Ledger**
+- **Блокчейн леджър**
+  Процедурата на контракта има достъп до всички данни за целия блокчейн чрез оперативно съвместими услуги, включително завършени блокове и транзакции, както и всяко от техните полета. Данните на блоковете са детерминистични и последователни, така че те могат да бъдат достъпени по сигурен начин чрез смарт контракти.
 
-   The contract procedure can access all data on the entire chain through interoperable services, including complete blocks and transactions, and each of their fields. The data on the blocks are deterministic and consistent, so they can be securely accessed by smart contracts.
+- **Пространство за съхренение на информация на контракт**
 
-- **Contract Storage Space**
+   Всеки договор, доставен в мрежата на NEO, има собствено пространство за съхранение на информация, до което има достъп само контракта. Консенсусният механизъм на NEO осигурява консистентност на състоянието на съхранените данни на всеки ноуд в мрежата.
 
-   Each contract deployed on the NEO network, has a private storage area that can only be accessed by the contract itself. NEO consensus mechanism ensures consistency of the storage status, of each node in the network.
-
-For situations where access to non-blockchain data is required, NEO does not provide a direct way to interact with these data. Non-blockchain data will have to be transferred to the NEO blockchain using transactions, and subsequently translated into the either of the aforementioned data sources, in order to become accessible by the smart contracts.
+За ситуации, при които е необходим достъп до данни извън блокчейна, NEO не предоставя пряк начин за взаимодействие с такива данни. Данни, които не са на блокчейна, трябва да бъдат прехвърлени към блокчейна на NEO, използвайки транзакции, а в последствие преведени в някой от горепосочените източници на данни, за да станат достъпни чрез смарт контракти.
 
 #### Contract Call
 
